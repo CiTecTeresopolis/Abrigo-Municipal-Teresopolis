@@ -32,7 +32,7 @@ const KPICard = ({
           >
             {title}
           </p>
-          <p className="text-2xl font-black tracking-tight font-mono">
+          <p className="text-xl font-black tracking-tight font-mono">
             {typeof value === "number" ? value.toLocaleString("pt-BR") : value}
           </p>
           {description && (

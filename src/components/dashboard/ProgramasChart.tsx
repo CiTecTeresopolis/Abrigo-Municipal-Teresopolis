@@ -49,7 +49,7 @@ const ProgramasChart = ({ data }: ProgramasChartProps) => {
           />
           <Bar
             dataKey="value"
-            fill={CHART_COLORS[3]}
+            fill={"#0077b6"}
             radius={[6, 6, 0, 0]}
             barSize={32}
           />
