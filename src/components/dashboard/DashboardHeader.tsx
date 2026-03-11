@@ -59,6 +59,15 @@ const DashboardHeader = ({
             </a>
           </div>
 
+          <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10">
+            <a
+              target="_blank"
+              href="https://dados.teresopolis.rj.gov.br/dataset/atendimentos-abrigo-municipal/resource/270e037c-f53e-4495-acb3-dbdb5a090311"
+            >
+              <span className="text-sm font-semibold">Base de Dados</span>
+            </a>
+          </div>
+
           {/* Unit selector */}
           <Select value={selectedUnit} onValueChange={onUnitChange}>
             <SelectTrigger className="w-full md:w-[200px] bg-white/10 backdrop-blur-sm border-white/20 text-primary-foreground hover:bg-white/20 transition-colors">
