@@ -114,7 +114,7 @@ const Index = () => {
 
             {/* Row 3: Details */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 mb-5">
-              <BairrosChart data={data.bairrosData.slice(0, 10)} />
+              <BairrosChart data={data.bairrosData.slice(0, 5)} />
               <DistritoChart data={data.causaData} />
               <div className="md:col-span-2">
                 <ProgramasChart data={data.mesData} />
