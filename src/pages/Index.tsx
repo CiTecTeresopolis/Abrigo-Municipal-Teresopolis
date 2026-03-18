@@ -18,6 +18,14 @@ const Index = () => {
   const { data, loading } = useAbrigoData(selectedUnit);
   const unit = ABRIGO_UNITS.find((u) => u.id === selectedUnit);
 
+  const femaleCount =
+    data?.sexoData.find((s) => s.name === "Feminino")?.value || 0;
+  const maleCount =
+    data?.sexoData.find((s) => s.name === "Masculino")?.value || 0;
+  const totalSexCount = femaleCount + maleCount;
+  const femalePct = totalSexCount ? (femaleCount / totalSexCount) * 100 : 0;
+  const malePct = totalSexCount ? 100 - femalePct : 0;
+
   return (
     <div className="min-h-screen bg-background">
       {/* Ambient background blobs */}
@@ -52,18 +60,23 @@ const Index = () => {
 
               <KPICard
                 title="Principal Causa"
-                value={[...data.causaData].sort((a, b) => b.value - a.value)[0]?.name || "N/A"}
+                value={
+                  [...data.causaData].sort((a, b) => b.value - a.value)[0]
+                    ?.name || "N/A"
+                }
                 icon={BookOpen}
                 description="Causa mais frequente"
               />
 
               <KPICard
                 title="Principal Origem"
-                value={[...data.bairrosData].sort((a, b) => b.value - a.value)[0]?.name || "N/A"}
+                value={
+                  [...data.bairrosData].sort((a, b) => b.value - a.value)[0]
+                    ?.name || "N/A"
+                }
                 icon={MapPin}
                 description=""
               />
-
 
               <KPICard
                 title="Média de Idade"
@@ -74,15 +87,15 @@ const Index = () => {
 
               <KPICard
                 title="Público Feminino"
-                value={`${(((data.sexoData.find((s) => s.name === "Feminino")?.value || 0) / data.total) * 100).toFixed(1)}%`}
+                value={`${femalePct.toFixed(1)}%`}
                 icon={UserCheck}
-                description={`${data.sexoData.find((s) => s.name === "Feminino")?.value || 0} atendimentos/acolhimentos`}
+                description={`${femaleCount} perfis únicos`}
               />
               <KPICard
                 title="Público Masculino"
-                value={`${(((data.sexoData.find((s) => s.name === "Masculino")?.value || 0) / data.total) * 100).toFixed(1)}%`}
+                value={`${malePct.toFixed(1)}%`}
                 icon={UserCheck}
-                description={`${data.sexoData.find((s) => s.name === "Masculino")?.value || 0} atendimentos/acolhimentos`}
+                description={`${maleCount} perfis únicos`}
               />
             </div>
 

@@ -8,6 +8,7 @@ export const CHART_COLORS = [
 ];
 
 export interface AbrigoRecord {
+  id: string;
   mes: string;
   sexo: string;
   idade: number | string;
@@ -50,21 +51,22 @@ export function parseCsv(text: string): AbrigoRecord[] {
   for (const line of lines) {
     const cols = line.split(",");
     const mes = cols[0]?.trim();
-    const sexo = cols[1]?.trim();
-    const idadeStr = cols[2]?.trim();
-    const escolaridade = cols[3]?.trim();
-    const bairro = cols[4]?.trim();
-    const municipio = cols[5]?.trim();
-    const estado = cols[6]?.trim();
-    const causa = cols[7]?.trim();
+    const id = cols[1]?.trim();
+    const sexo = cols[2]?.trim();
+    const idadeStr = cols[3]?.trim();
+    const escolaridade = cols[4]?.trim();
+    const bairro = cols[5]?.trim();
+    const municipio = cols[6]?.trim();
+    const estado = cols[7]?.trim();
+    const causa = cols[8]?.trim();
 
-    if (!sexo || !idadeStr) continue;
+    if (!sexo || !idadeStr || !id) continue;
     let idade: number | string = parseInt(idadeStr, 10);
     if (isNaN(idade)) {
       idade = idadeStr;
     }
 
-    records.push({ mes, sexo, idade, escolaridade, bairro, municipio, estado, causa });
+    records.push({ id, mes, sexo, idade, escolaridade, bairro, municipio, estado, causa });
   }
 
   return records;
@@ -72,6 +74,7 @@ export function parseCsv(text: string): AbrigoRecord[] {
 
 export interface AggregatedData {
   total: number;
+  totalUnique: number;
   mediaIdade: string;
   sexoData: { name: string; value: number; fill: string }[];
   faixaEtariaData: { name: string; Masculino: number; Feminino: number }[];
@@ -107,21 +110,27 @@ function calculateAverageAge(records: AbrigoRecord[]): string {
 }
 
 export function aggregateData(records: AbrigoRecord[]): AggregatedData {
-  const total = records.length;
+  // Filtrar registros únicos por id para análises qualitativas
+  const uniqueRecords = records.filter((record, index, self) =>
+    index === self.findIndex(r => r.id === record.id)
+  );
 
-  const mediaIdade = calculateAverageAge(records);
+  const total = records.length; // Total de atendimentos (quantitativo)
+  const totalUnique = uniqueRecords.length; // Total de perfis únicos (qualitativo)
 
-  // Sexo
-  const sexoMap = countBy(records, (r) => r.sexo);
+  const mediaIdade = calculateAverageAge(uniqueRecords); // Média de idade baseada em perfis únicos
+
+  // Sexo (qualitativo)
+  const sexoMap = countBy(uniqueRecords, (r) => r.sexo);
   const sexoData = [
     { name: "Masculino", value: sexoMap.get("Masculino") || 0, fill: "#6a994e" },
     { name: "Feminino", value: sexoMap.get("Feminino") || 0, fill: "#bc4749" },
   ];
 
-  // Faixa Etária (contagem por sexo)
+  // Faixa Etária (qualitativo)
   const faixaOrder = ["Criança (0-12)", "Adolescente (13-18)", "Jovem (19-29)", "Adulto (30-59)", "Idoso (60+)"];
   const faixaEtariaData = faixaOrder.map((name) => {
-    const filtered = records.filter((r) => getFaixaEtaria(r.idade) === name);
+    const filtered = uniqueRecords.filter((r) => getFaixaEtaria(r.idade) === name);
     return {
       name,
       Masculino: filtered.filter((r) => r.sexo === "Masculino").length,
@@ -129,9 +138,9 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
     };
   });
 
-  // Escolaridade (contagem por sexo)
+  // Escolaridade (qualitativo)
   const escMap = new Map<string, { Masculino: number; Feminino: number }>();
-  for (const r of records) {
+  for (const r of uniqueRecords) {
     const name = r.escolaridade || "";
     if (!escMap.has(name)) {
       escMap.set(name, { Masculino: 0, Feminino: 0 });
@@ -144,11 +153,11 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
     .map(([name, counts]) => ({ name, ...counts }))
     .sort((a, b) => b.Masculino + b.Feminino - (a.Masculino + a.Feminino));
 
-  // Bairros (top 10)
-  const bairroMap = countBy(records, (r) => r.bairro);
+  // Bairros (qualitativo)
+  const bairroMap = countBy(uniqueRecords, (r) => r.bairro);
   const bairrosData = sortedEntries(bairroMap);
 
-  // Sazonalidade (Mês)
+  // Sazonalidade (Mês) - quantitativo, pois conta atendimentos por mês
   const mesMap = countBy(records, (r) => r.mes);
   const MONTHS_ORDER = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
@@ -162,14 +171,14 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
       return (indexA === -1 ? 99 : indexA) - (indexB === -1 ? 99 : indexB);
     });
 
-  // Causas
-  const causaMap = countBy(records, (r) => r.causa);
+  // Causas (qualitativo)
+  const causaMap = countBy(uniqueRecords, (r) => r.causa);
   const causaData = sortedEntries(causaMap);
 
-  // Causa por Sexo
+  // Causa por Sexo (qualitativo)
   const causas = causaData.map((p) => p.name);
   const causaPorSexo = causas.map((causa) => {
-    const filtered = records.filter((r) => r.causa === causa);
+    const filtered = uniqueRecords.filter((r) => r.causa === causa);
     return {
       causa,
       Masculino: filtered.filter((r) => r.sexo === "Masculino").length,
@@ -177,10 +186,10 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
     };
   });
 
-  // Faixa Etária por causa (top 4 causas)
+  // Faixa Etária por causa (qualitativo)
   const topCausas = causas.slice(0, 4);
   const faixaEtariaPorCausa = topCausas.map((causa) => {
-    const filtered = records.filter((r) => r.causa === causa);
+    const filtered = uniqueRecords.filter((r) => r.causa === causa);
     const faixaCounts = countBy(filtered, (r) => getFaixaEtaria(r.idade));
     const entry: Record<string, unknown> = { causa };
     for (const faixa of faixaOrder) {
@@ -191,6 +200,7 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
 
   return {
     total,
+    totalUnique,
     sexoData,
     mediaIdade,
     faixaEtariaData,
