@@ -8,7 +8,7 @@ export const CHART_COLORS = [
   "#390099",
   "#9e0059",
   "#179b64",
-  "#4895ef"
+  "#4895ef",
 ];
 
 export interface AbrigoRecord {
@@ -70,7 +70,17 @@ export function parseCsv(text: string): AbrigoRecord[] {
       idade = idadeStr;
     }
 
-    records.push({ id, mes, sexo, idade, escolaridade, bairro, municipio, estado, causa });
+    records.push({
+      id,
+      mes,
+      sexo,
+      idade,
+      escolaridade,
+      bairro,
+      municipio,
+      estado,
+      causa,
+    });
   }
 
   return records;
@@ -84,6 +94,7 @@ export interface AggregatedData {
   faixaEtariaData: { name: string; Masculino: number; Feminino: number }[];
   escolaridadeData: { name: string; Masculino: number; Feminino: number }[];
   bairrosData: { name: string; value: number }[];
+  bairrosMunicipioData: { name: string; value: number }[];
   municipiosData: { name: string; value: number }[];
   estadosData: { name: string; value: number }[];
   mesData: { name: string; value: number }[];
@@ -101,7 +112,10 @@ function countBy<T>(arr: T[], keyFn: (item: T) => string): Map<string, number> {
   return map;
 }
 
-function sortedEntries(map: Map<string, number>, limit?: number): { name: string; value: number }[] {
+function sortedEntries(
+  map: Map<string, number>,
+  limit?: number,
+): { name: string; value: number }[] {
   const entries = Array.from(map.entries())
     .sort((a, b) => b[1] - a[1])
     .map(([name, value]) => ({ name, value }));
@@ -109,16 +123,20 @@ function sortedEntries(map: Map<string, number>, limit?: number): { name: string
 }
 
 function calculateAverageAge(records: AbrigoRecord[]): string {
-  const validRecords = records.filter(r => typeof r.idade === 'number');
+  const validRecords = records.filter((r) => typeof r.idade === "number");
   if (validRecords.length === 0) return "0.00";
-  const sum = validRecords.reduce((acc, curr) => acc + (curr.idade as number), 0);
+  const sum = validRecords.reduce(
+    (acc, curr) => acc + (curr.idade as number),
+    0,
+  );
   return (sum / validRecords.length).toFixed(0); // Retorna com 0 casas decimais
 }
 
 export function aggregateData(records: AbrigoRecord[]): AggregatedData {
   // Filtrar registros únicos por id para análises qualitativas
-  const uniqueRecords = records.filter((record, index, self) =>
-    index === self.findIndex(r => r.id === record.id)
+  const uniqueRecords = records.filter(
+    (record, index, self) =>
+      index === self.findIndex((r) => r.id === record.id),
   );
 
   const total = records.length; // Total de atendimentos (quantitativo)
@@ -129,14 +147,26 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
   // Sexo (qualitativo)
   const sexoMap = countBy(uniqueRecords, (r) => r.sexo);
   const sexoData = [
-    { name: "Masculino", value: sexoMap.get("Masculino") || 0, fill: "#6a994e" },
+    {
+      name: "Masculino",
+      value: sexoMap.get("Masculino") || 0,
+      fill: "#6a994e",
+    },
     { name: "Feminino", value: sexoMap.get("Feminino") || 0, fill: "#bc4749" },
   ];
 
   // Faixa Etária (qualitativo)
-  const faixaOrder = ["Criança (0-12)", "Adolescente (13-18)", "Jovem (19-29)", "Adulto (30-59)", "Idoso (60+)"];
+  const faixaOrder = [
+    "Criança (0-12)",
+    "Adolescente (13-18)",
+    "Jovem (19-29)",
+    "Adulto (30-59)",
+    "Idoso (60+)",
+  ];
   const faixaEtariaData = faixaOrder.map((name) => {
-    const filtered = uniqueRecords.filter((r) => getFaixaEtaria(r.idade) === name);
+    const filtered = uniqueRecords.filter(
+      (r) => getFaixaEtaria(r.idade) === name,
+    );
     return {
       name,
       Masculino: filtered.filter((r) => r.sexo === "Masculino").length,
@@ -163,19 +193,36 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
   const bairroMap = countBy(uniqueRecords, (r) => r.bairro);
   const bairrosData = sortedEntries(bairroMap);
 
-    // Municípios (qualitativo)
+  // Bairros do Município (qualitativo)
+  const bairroMunicipioMap = countBy(
+    uniqueRecords.filter((r) => r.bairro !== "Fora do município"),
+    (r) => r.bairro
+  );
+  const bairrosMunicipioData = sortedEntries(bairroMunicipioMap);
+
+  // Municípios (qualitativo)
   const municipioMap = countBy(uniqueRecords, (r) => r.municipio);
   const municipiosData = sortedEntries(municipioMap);
 
-    // Estados (qualitativo)
+  // Estados (qualitativo)
   const estadoMap = countBy(uniqueRecords, (r) => r.estado);
   const estadosData = sortedEntries(estadoMap);
 
   // Sazonalidade (Mês) - quantitativo, pois conta atendimentos por mês
   const mesMap = countBy(records, (r) => r.mes);
   const MONTHS_ORDER = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
   ];
   const mesData = Array.from(mesMap.entries())
     .map(([name, value]) => ({ name, value }))
@@ -220,6 +267,7 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
     faixaEtariaData,
     escolaridadeData,
     bairrosData,
+    bairrosMunicipioData,
     municipiosData,
     estadosData,
     mesData,
