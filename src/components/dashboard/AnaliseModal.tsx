@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { AggregatedData } from "@/data/abrigo-data";
 
 // Componente de Seção com a nova paleta
 const Section = ({
@@ -46,7 +47,13 @@ const Section = ({
   </div>
 );
 
-const AnaliseModal = () => {
+const AnaliseModal = ({
+  data,
+  year,
+}: {
+  data?: AggregatedData;
+  year: string;
+}) => {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/Analise_dos_Dados_do_CREAS.docx";
@@ -85,11 +92,11 @@ const AnaliseModal = () => {
         >
           <DialogTitle className="text-xl font-bold flex items-center gap-2 text-[#386641]">
             <FileText className="h-5 w-5" />
-            Análise dos Dados do CREAS – Teresópolis (2025)
+            Análise dos Dados do Abrigo Municipal – Teresópolis ({year})
           </DialogTitle>
           <DialogDescription className="text-[#386641]/70">
-            Diagnóstico completo baseado nos 854 atendimentos realizados em
-            2025.
+            Diagnóstico completo baseado nos {data?.totalUnique || 0} perfis
+            únicos atendidos em {year}.
           </DialogDescription>
         </DialogHeader>
 
@@ -104,69 +111,100 @@ const AnaliseModal = () => {
               style={{ backgroundColor: "#6a994e10", borderColor: "#6a994e30" }}
             >
               <p className="text-sm font-medium text-[#386641]">
-                O painel mostra <strong>854 atendimentos</strong> em 2025, com
-                forte concentração em:
+                O painel mostra <strong>{data?.total || 0} atendimentos</strong>{" "}
+                em {year}, com forte concentração em:
               </p>
               <div className="flex gap-3 flex-wrap">
-                <span
-                  className="px-3 py-1 rounded-full text-xs font-semibold"
-                  style={{ backgroundColor: "#bc474920", color: "#bc4749" }}
-                >
-                  Violência intrafamiliar – 48,8%
-                </span>
-                <span
-                  className="px-3 py-1 rounded-full text-xs font-semibold"
-                  style={{ backgroundColor: "#a7c95730", color: "#386641" }}
-                >
-                  Situação de rua – 39,2%
-                </span>
+                {(() => {
+                  const topCausas = data?.causaData.slice(0, 2) || [];
+                  const totalTop = topCausas.reduce(
+                    (sum, causa) => sum + causa.value,
+                    0,
+                  );
+                  return topCausas.map((causa, index) => {
+                    const percentage = totalTop
+                      ? ((causa.value / totalTop) * 100).toFixed(1)
+                      : "0.0";
+                    return (
+                      <span
+                        key={causa.name}
+                        className="px-3 py-1 rounded-full text-xs font-semibold"
+                        style={{
+                          backgroundColor:
+                            index === 0 ? "#bc474920" : "#a7c95730",
+                          color: index === 0 ? "#bc4749" : "#386641",
+                        }}
+                      >
+                        {causa.name} – {percentage}%
+                      </span>
+                    );
+                  });
+                })()}
               </div>
               <p className="text-xs text-slate-600">
-                Esses dois grupos somam <strong>88%</strong> de toda a demanda.
+                Esses dois grupos somam{" "}
+                <strong>
+                  {(
+                    (data?.causaData
+                      .slice(0, 2)
+                      .reduce((sum, causa) => sum + causa.value, 0) /
+                      (data?.totalUnique || 1)) *
+                      100 || 0
+                  ).toFixed(2)}
+                  %
+                </strong>{" "}
+                de toda a demanda.
               </p>
             </div>
 
             <Separator style={{ backgroundColor: "#a7c95740" }} />
 
-            {/* Seções de conteúdo usando a paleta */}
-            <Section
-              icon={AlertTriangle}
-              title="Violência Intrafamiliar (417 casos)"
-            >
-              <p>
-                Concentração territorial em{" "}
-                <strong>
-                  São Pedro, Fonte Santa, Ermitage, Alto e Ilha do Caxangá
-                </strong>
-                .
-              </p>
-              <div
-                className="rounded-lg p-3 border text-xs"
-                style={{ backgroundColor: "#f2e8cf", borderColor: "#bc474930" }}
-              >
-                <strong style={{ color: "#bc4749" }}>Indicação:</strong>{" "}
-                Necessidade de políticas de proteção à mulher e prevenção à
-                violência.
+            {/* Seções dinâmicas para as principais causas */}
+            {data?.causaData.slice(0, 2).map((causa, index) => (
+              <div key={causa.name}>
+                <Section
+                  icon={index === 0 ? AlertTriangle : Home}
+                  title={`${causa.name} (${causa.value} casos${data.totalUnique ? ` – ${((causa.value / data.totalUnique) * 100).toFixed(2)}%` : ""})`}
+                >
+                  <p>
+                    {index === 0 ? (
+                      <>
+                        Concentração territorial em{" "}
+                        <strong>
+                          {data.bairrosMunicipioData
+                            .slice(0, 5)
+                            .map((b) => b.name)
+                            .join(", ")}
+                        </strong>
+                        .
+                      </>
+                    ) : (
+                      <>
+                        Maior incidência entre <strong>homens adultos</strong>.
+                        Conexão com saúde mental e desemprego.
+                      </>
+                    )}
+                  </p>
+                  <div
+                    className="rounded-lg p-3 border text-xs"
+                    style={{
+                      backgroundColor: "#f2e8cf",
+                      borderColor: index === 0 ? "#bc474930" : "#6a994e30",
+                    }}
+                  >
+                    <strong
+                      style={{ color: index === 0 ? "#bc4749" : "#386641" }}
+                    >
+                      Indicação:
+                    </strong>{" "}
+                    {index === 0
+                      ? "Necessidade de políticas de proteção à mulher e prevenção à violência."
+                      : "Exige políticas intersetoriais de habitação e saúde."}
+                  </div>
+                </Section>
+                <Separator style={{ backgroundColor: "#a7c95740" }} />
               </div>
-            </Section>
-
-            <Separator style={{ backgroundColor: "#a7c95740" }} />
-
-            <Section icon={Home} title="Situação de Rua (335 casos – 39,2%)">
-              <p>
-                Maior incidência entre <strong>homens adultos</strong>. Conexão
-                com saúde mental e desemprego.
-              </p>
-              <div
-                className="rounded-lg p-3 border text-xs"
-                style={{ backgroundColor: "#f2e8cf", borderColor: "#6a994e30" }}
-              >
-                <strong style={{ color: "#386641" }}>Indicação:</strong> Exige
-                políticas intersetoriais de habitação e saúde.
-              </div>
-            </Section>
-
-            <Separator style={{ backgroundColor: "#a7c95740" }} />
+            ))}
 
             <Section icon={GraduationCap} title="Escolaridade dos Atendidos">
               <p>
@@ -214,7 +252,7 @@ const AnaliseModal = () => {
           className="px-4 sm:px-6 py-2 border-t flex justify-end"
           style={{ borderColor: "#a7c95740" }}
         >
-          <Button
+          {/* <Button
             onClick={handleDownload}
             className="gap-2 text-white"
             style={{
@@ -224,7 +262,7 @@ const AnaliseModal = () => {
           >
             <Download className="h-4 w-4" />
             Baixar Análise (.docx)
-          </Button>
+          </Button> */}
         </div>
       </DialogContent>
     </Dialog>

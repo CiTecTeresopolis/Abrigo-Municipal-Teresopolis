@@ -14,6 +14,7 @@ import ProgramaSexoChart from "@/components/dashboard/ProgramaSexoChart";
 import FaixaEtariaProgramaChart from "@/components/dashboard/FaixaEtariaProgramaChart";
 import OrigemForaChart from "@/components/dashboard/OrigemForaChart";
 import OrigemDentroChart from "@/components/dashboard/OrigemDentroChart";
+import AnaliseModal from "@/components/dashboard/AnaliseModal";
 
 const Index = () => {
   const [selectedUnit, setSelectedUnit] = useState(ABRIGO_UNITS[0].id);
@@ -41,6 +42,8 @@ const Index = () => {
           selectedUnit={selectedUnit}
           onUnitChange={setSelectedUnit}
         />
+
+        {/* <AnaliseModal data={data} year={unit?.label || selectedUnit} /> */}
 
         {loading || !data ? (
           <div className="flex items-center justify-center py-32">

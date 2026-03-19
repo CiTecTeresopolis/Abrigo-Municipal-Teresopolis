@@ -21,6 +21,24 @@ interface DistritoChartProps {
 }
 
 const OrigemDentroChart = ({ data }: DistritoChartProps) => {
+  const total = data.reduce((sum, entry) => sum + entry.value, 0);
+
+  const labelPercents = (() => {
+    const raw = data.map((entry) => (total ? (entry.value / total) * 100 : 0));
+    const rounded = raw.map((p) => Number(p.toFixed(1)));
+    const diff = Number(
+      (100 - rounded.reduce((sum, v) => sum + v, 0)).toFixed(1),
+    );
+
+    if (!rounded.length) return rounded;
+
+    const adjusted = [...rounded];
+    adjusted[adjusted.length - 1] = Number(
+      (adjusted[adjusted.length - 1] + diff).toFixed(1),
+    );
+    return adjusted;
+  })();
+
   return (
     <ChartSection
       title="DISTRIBUIÇÃO POR BAIRRO DE ORIGEM (TERESÓPOLIS)"
@@ -37,7 +55,7 @@ const OrigemDentroChart = ({ data }: DistritoChartProps) => {
             dataKey="value"
             stroke="none"
             cornerRadius={4}
-            label={({ percent }) => `${(percent * 100).toFixed(2)}%`}
+            label={({ index }) => `${labelPercents[index] ?? 0}%`}
             labelLine={false}
           >
             {data.map((entry, index) => (
