@@ -23,7 +23,7 @@ interface DistritoChartProps {
 const OrigemDentroChart = ({ data }: DistritoChartProps) => {
   return (
     <ChartSection
-      title="DISTRIBUIÇÃO POR BAIRRO DE ORIGEM (MUNICÍPIO)"
+      title="DISTRIBUIÇÃO POR BAIRRO DE ORIGEM (TERESÓPOLIS)"
       description="Análise do perfil por bairro de origem (%)"
     >
       <ResponsiveContainer width="100%" height={350}>
