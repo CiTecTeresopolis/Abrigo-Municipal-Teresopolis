@@ -5,6 +5,10 @@ export const CHART_COLORS = [
   "#f7b801",
   "#f18701",
   "#bc4749",
+  "#390099",
+  "#9e0059",
+  "#179b64",
+  "#4895ef"
 ];
 
 export interface AbrigoRecord {
@@ -80,6 +84,8 @@ export interface AggregatedData {
   faixaEtariaData: { name: string; Masculino: number; Feminino: number }[];
   escolaridadeData: { name: string; Masculino: number; Feminino: number }[];
   bairrosData: { name: string; value: number }[];
+  municipiosData: { name: string; value: number }[];
+  estadosData: { name: string; value: number }[];
   mesData: { name: string; value: number }[];
   causaData: { name: string; value: number }[];
   causaPorSexo: { causa: string; Masculino: number; Feminino: number }[];
@@ -157,6 +163,14 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
   const bairroMap = countBy(uniqueRecords, (r) => r.bairro);
   const bairrosData = sortedEntries(bairroMap);
 
+    // Municípios (qualitativo)
+  const municipioMap = countBy(uniqueRecords, (r) => r.municipio);
+  const municipiosData = sortedEntries(municipioMap);
+
+    // Estados (qualitativo)
+  const estadoMap = countBy(uniqueRecords, (r) => r.estado);
+  const estadosData = sortedEntries(estadoMap);
+
   // Sazonalidade (Mês) - quantitativo, pois conta atendimentos por mês
   const mesMap = countBy(records, (r) => r.mes);
   const MONTHS_ORDER = [
@@ -206,6 +220,8 @@ export function aggregateData(records: AbrigoRecord[]): AggregatedData {
     faixaEtariaData,
     escolaridadeData,
     bairrosData,
+    municipiosData,
+    estadosData,
     mesData,
     causaData,
     causaPorSexo,

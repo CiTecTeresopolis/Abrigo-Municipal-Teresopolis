@@ -12,6 +12,7 @@ import FaixaEtariaChart from "@/components/dashboard/FaixaEtariaChart";
 import EscolaridadeChart from "@/components/dashboard/EscolaridadeChart";
 import ProgramaSexoChart from "@/components/dashboard/ProgramaSexoChart";
 import FaixaEtariaProgramaChart from "@/components/dashboard/FaixaEtariaProgramaChart";
+import OrigemForaChart from "@/components/dashboard/OrigemForaChart";
 
 const Index = () => {
   const [selectedUnit, setSelectedUnit] = useState(ABRIGO_UNITS[0].id);
@@ -113,9 +114,21 @@ const Index = () => {
             </div>
 
             {/* Row 3: Details */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-5">
+              <div className="md:col-span-2">
+                <BairrosChart data={data.bairrosData.slice(0, 5)} />
+              </div>
+              <div className="md:col-span-2">
+                <OrigemForaChart data={data.estadosData} />
+              </div>
+            </div>
+
+            {/* Row 4: Details */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 mb-5">
-              <BairrosChart data={data.bairrosData.slice(0, 5)} />
-              <DistritoChart data={data.causaData} />
+              <div className="md:col-span-2">
+                <DistritoChart data={data.causaData} />
+              </div>
+
               <div className="md:col-span-2">
                 <ProgramasChart data={data.mesData} />
               </div>

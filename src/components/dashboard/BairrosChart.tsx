@@ -21,11 +21,8 @@ interface BairrosChartProps {
 
 const BairrosChart = ({ data }: BairrosChartProps) => {
   return (
-    <ChartSection
-      title="Origem"
-      description="Top 5 origens"
-    >
-      <ResponsiveContainer width="100%" height={300}>
+    <ChartSection title="Origem" description="Top 5 origens">
+      <ResponsiveContainer width="100%" height={350}>
         <BarChart data={data} layout="vertical" margin={{ left: 10 }}>
           <XAxis
             type="number"
