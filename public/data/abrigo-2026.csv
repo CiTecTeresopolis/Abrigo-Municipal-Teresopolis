@@ -1,0 +1,137 @@
+﻿Mês,id,Sexo,Idade,Escolaridade,Bairro referência,Município referência,Estado referência,Causa constatada
+Janeiro,1,Masculino,30,Fundamental Incompleto,São Pedro,,RJ,Dependência de Drogas
+Janeiro,2,Masculino,57,Fundamental Completo,Fora do município,,RJ,Psiquiátrico
+Janeiro,3,Masculino,55,Fundamental Incompleto,Fora do município,,SP,Dependência de Álcool
+Janeiro,4,Masculino,46,Médio Incompleto,Fora do município,,RJ,Dependência de Drogas
+Janeiro,5,Masculino,26,Fundamental Incompleto,Rosário,,RJ,Dependência de Drogas
+Janeiro,6,Masculino,37,Fundamental Incompleto,Fora do município,,RJ,Dependência de Álcool
+Janeiro,7,Feminino,45,Médio Completo,Fora do município,,SC,Dependência de Drogas
+Janeiro,8,Feminino,37,Fundamental Incompleto,Fora do município,,RJ,Dependência de Drogas
+Janeiro,9,Masculino,42,Médio Completo,Fora do município,,MG,Não Constatada
+Janeiro,10,Masculino,74,Fundamental Completo,Várzea,,RJ,Psiquiátrico
+Janeiro,11,Masculino,63,Fundamental Incompleto,Fora do município,,MG,Dependência de Drogas
+Janeiro,12,Masculino,69,Fundamental Incompleto,Providência,,RJ,Não Constatada
+Janeiro,13,Masculino,34,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Janeiro,14,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Janeiro,15,Masculino,56,Médio Completo,Várzea,,RJ,Psiquiátrico
+Janeiro,16,Masculino,61,Fundamental Completo,Morro do Tiro,,RJ,Dependência de Álcool
+Janeiro,17,Feminino,49,Superior Completo,Agriões,,RJ,Psiquiátrico
+Janeiro,18,Masculino,32,Médio Incompleto,Perpétuo,,RJ,Dependência de Drogas
+Janeiro,19,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Janeiro,20,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Janeiro,21,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Janeiro,22,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Fevereiro,23,Masculino,56,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Fevereiro,24,Masculino,61,Fundamental Completo,Rosário,,RJ,Dependência de Álcool
+Fevereiro,25,Masculino,32,Fundamental Incompleto,Perpétuo,,RJ,Dependência de Drogas
+Fevereiro,26,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,27,Feminino,61,Médio Completo,Várzea,,RJ,Psiquiátrico
+Fevereiro,28,Feminino,49,Superior Completo,Agriões,,RJ,Psiquiátrico
+Fevereiro,29,Masculino,56,Médio Completo,Fora do município,,RJ,Não Constatada
+Fevereiro,30,Feminino,37,Médio Completo,Alto,,RJ,Dependência de Drogas
+Fevereiro,31,Masculino,35,Médio Completo,São Pedro,,RJ,Dependência de Drogas
+Fevereiro,32,Masculino,42,Médio Completo,Fora do município,,RJ,Não Constatada
+Fevereiro,33,Masculino,32,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Fevereiro,34,Masculino,34,Fundamental Incompleto,Fora do município,,RJ,Dependência de Álcool
+Fevereiro,35,Feminino,46,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Fevereiro,36,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,37,Masculino,69,Fundamental Incompleto,Providência,,RJ,Não Constatada
+Fevereiro,38,Masculino,63,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Fevereiro,39,Masculino,34,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Fevereiro,40,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,41,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,42,Feminino,13,Fundamental Incompleto,Fora do município,,RJ,Não Constatada
+Fevereiro,43,Feminino,9,Não Escolarizado,Fora do município,,RJ,Não Constatada
+Fevereiro,44,Feminino,4,Não Escolarizado,Fora do município,,RJ,Não Constatada
+Fevereiro,45,Masculino,41,Médio Incompleto,Perpétuo,,RJ,Não Constatada
+Fevereiro,46,Masculino,32,Fundamental Incompleto,Perpétuo,,RJ,Dependência de Drogas
+Fevereiro,47,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Fevereiro,48,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,49,Feminino,61,Médio Completo,Várzea,,RJ,Psiquiátrico
+Fevereiro,50,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Fevereiro,51,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Março,52,Masculino,56,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Março,53,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Março,54,Masculino,32,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Março,55,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Março,56,Masculino,42,Médio Completo,Fora do município,,RJ,Não Constatada
+Março,57,Masculino,69,Fundamental Incompleto,Providência,,RJ,Não Constatada
+Março,58,Masculino,35,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Março,59,Masculino,35,Médio Completo,Fora do município,,RJ,Dependência de Drogas
+Março,60,Masculino,33,Médio Incompleto,Fora do município,,RJ,Dependência de Drogas
+Março,61,Feminino,31,Fundamental Completo,Fora do município,,SC,Psiquiátrico
+Março,62,Feminino,43,Médio Completo,Araras,,RJ,Psiquiátrico
+Março,63,Masculino,26,Fundamental Completo,Agriões,,RJ,Dependência de Drogas
+Março,64,Feminino,39,Superior Completo,São Pedro,,RJ,Dependência de Drogas
+Março,65,Masculino,55,Fundamental Incompleto,Fora do município,,BA,Dependência de Álcool
+Março,66,Masculino,59,Fundamental Incompleto,Granja Guarani,,RJ,Dependência de Álcool
+Março,67,Masculino,34,Médio Incompleto,Fora do município,,RJ,Dependência de Drogas
+Março,68,Feminino,32,Médio Incompleto,Fischer,,RJ,Psiquiátrico
+Março,69,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Março,70,Masculino,19,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Março,71,Masculino,23,Médio Incompleto,Fora do município,,MG,Dependência de Drogas
+Abril,72,Masculino,56,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Abril,73,Masculino,23,Médio Incompleto,Fora do município,,MG,Dependência de Drogas
+Abril,74,Masculino,59,Fundamental Incompleto,Granja Guarani,,RJ,Dependência de Álcool
+Abril,75,Masculino,32,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Abril,76,Masculino,69,Fundamental Incompleto,Providência,,RJ,Não Constatada
+Abril,77,Masculino,55,Fundamental Incompleto,Fora do município,,BA,Dependência de Álcool
+Abril,78,Masculino,35,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Abril,79,Masculino,19,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Abril,80,Masculino,26,Fundamental Completo,Agriões,,RJ,Dependência de Drogas
+Abril,81,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Abril,82,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Abril,83,Feminino,66,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Abril,84,Feminino,64,Superior Incompleto,Canoas,,RJ,Psiquiátrico
+Abril,85,Feminino,50,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Abril,86,Masculino,52,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Abril,87,Masculino,32,Médio Completo,Fora do município,,RJ,Dependência de Álcool
+Abril,88,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Abril,89,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Abril,90,Masculino,23,Médio Completo,Fora do município,,MG,Dependência de Drogas
+Abril,91,Masculino,47,Fundamental Incompleto,Vale do Paraíso,,RJ,Dependência de Álcool
+Abril,92,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Abril,93,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Abril,94,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Abril,95,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Abril,96,Masculino,26,Médio Completo,Fora do município,,RS,Psiquiátrico
+Maio,97,Masculino,26,Médio Incompleto,Agriões,,RJ,Dependência de Drogas
+Maio,98,Masculino,56,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Maio,99,Masculino,52,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Maio,100,Feminino,50,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Maio,101,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Maio,102,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Maio,103,Masculino,59,Fundamental Incompleto,Granja Guarani,,RJ,Dependência de Álcool
+Maio,104,Masculino,32,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Maio,105,Masculino,26,Médio Completo,Paineiras,,RJ,Dependência de Drogas
+Maio,106,Masculino,43,Superior Incompleto,Rosário,,RJ,Dependência de Drogas
+Maio,107,Masculino,29,Médio Completo,Fora do município,,MG,Dependência de Drogas
+Maio,108,Masculino,54,Médio Incompleto,Fora do município,,RJ,Dependência de Drogas
+Maio,109,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Maio,110,Masculino,35,Fundamental Completo,Fora do município,,MG,Dependência de Álcool
+Maio,111,Masculino,41,Fundamental Incompleto,Alto,,RJ,Dependência de Drogas
+Maio,112,Masculino,35,Médio Incompleto,Várzea,,RJ,Não Constatada
+Junho,113,Masculino,56,Médio Completo,São Pedro,,RJ,Psiquiátrico
+Junho,114,Masculino,52,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Junho,115,Feminino,50,Médio Incompleto,Canoas,,RJ,Psiquiátrico
+Junho,116,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Junho,117,Masculino,32,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Junho,118,Masculino,35,Médio Incompleto,Várzea,,RJ,Não Constatada
+Junho,119,Masculino,41,Fundamental Incompleto,Araras,,RJ,Dependência de Drogas
+Junho,120,Masculino,43,Superior Incompleto,Rosário,,RJ,Dependência de Drogas
+Junho,121,Masculino,23,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Junho,122,Masculino,55,Fundamental Incompleto,Várzea,,RJ,Dependência de Álcool
+Junho,123,Feminino,60,Médio Completo,Várzea,,RJ,Psiquiátrico
+Junho,124,Masculino,70,Médio Completo,Várzea,,RJ,Dependência de Drogas
+Junho,125,Masculino,20,Superior Incompleto,Várzea,,RJ,Psiquiátrico
+Junho,126,Feminino,63,Fundamental Incompleto,Várzea,,RJ,Psiquiátrico
+Junho,127,Feminino,52,Fundamental Incompleto,Rosário,,RJ,Psiquiátrico
+Junho,128,Feminino,69,Médio Completo,Várzea,,RJ,Não Constatada
+Junho,129,Masculino,33,Médio Completo,Fora do município,,RJ,Dependência de Álcool
+Junho,130,Masculino,54,Fundamental Incompleto,Fora do município,,SP,Psiquiátrico
+Junho,131,Masculino,27,Médio Incompleto,Várzea,,RJ,Não Constatada
+Junho,132,Masculino,28,Fundamental Incompleto,Fora do município,,CE,Dependência de Álcool
+Junho,133,Masculino,32,Fundamental Incompleto,Fora do município,,CE,Não Constatada
+Junho,134,Masculino,32,Médio Incompleto,Várzea,,RJ,Dependência de Drogas
+Junho,135,Masculino,30,Fundamental Incompleto,Santa Cecília,,RJ,Dependência de Drogas
+Junho,136,Masculino,37,Médio Completo,Fora do município,,RJ,Psiquiátrico
