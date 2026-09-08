@@ -35,7 +35,7 @@ const DashboardHeader = ({
               Abrigo Municipal de Teresópolis
             </h1>
             <p className="text-sm text-primary-foreground/80 mt-1 font-medium">
-              Referência 2025
+              Referência 2026
             </p>
           </div>
         </div>

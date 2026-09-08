@@ -31,6 +31,8 @@ export interface AbrigoUnit {
 
 export const ABRIGO_UNITS: AbrigoUnit[] = [
   { id: "2025", label: "2025", csvPath: "/data/abrigo-2025.csv" },
+  { id: "2026", label: "2026", csvPath: "/data/abrigo-2026.csv" },
+
   // Adicione novas unidades aqui:
   // { id: "exemplo", label: "CRAS Exemplo", csvPath: "/data/cras-exemplo.csv" },
 ];
